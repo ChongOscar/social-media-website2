@@ -7,6 +7,7 @@ import { signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 import { collection, addDoc, serverTimestamp} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+import { getDocs } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 /* === Firebase Setup === */
 const firebaseConfig = {
     apiKey: "AIzaSyBkpnZ5dDrSVpVzAjRxOR0ftgWm1kg6UuM",
@@ -44,6 +45,8 @@ const userGreetingEl = document.getElementById("user-greeting")
 
 const textareaEl = document.getElementById("post-input")
 const postButtonEl = document.getElementById("post-btn")
+
+const pastPosts = document.getElementById("past-posts")
 /* == UI - Event Listeners == */
 
 signInWithGoogleButtonEl.addEventListener("click", authSignInWithGoogle)
@@ -59,14 +62,27 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
       showLoggedInView()
       showProfilePicture(userProfilePictureEl, user)
-      showUserGreeting(userGreetingEl, user)
+      showUserGreeting(userGreetingEl, user)  
+      showPosts(pastPosts, user)
     } else {
       showLoggedOutView()
     }
-  });
+    });
 
-  
+
+
 /* === Functions === */
+
+async function showPosts(pastPosts, user){
+  const querySnapshot = await getDocs(collection(db, "Posts"));
+    querySnapshot.forEach((doc) => {
+    console.log(doc.data().uid);
+    if (doc.data().uid == user.uid){
+      console.log("working")
+      pastPosts.innerHTML+=`<div>` + doc.data().body + `</div>`
+    }
+  });
+}
 
 function showProfilePicture(imgElement, user) {
     if (user !== null) {
