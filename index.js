@@ -53,7 +53,6 @@ createAccountButtonEl.addEventListener("click", authCreateAccountWithEmail)
 
 signOutButtonEl.addEventListener("click", authSignOut)
 
-postButtonEl.addEventListener("click", postButtonPressed)
 /* === Main Code === */
 
 onAuthStateChanged(auth, (user) => {
