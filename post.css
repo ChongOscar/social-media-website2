@@ -92,7 +92,12 @@ section {
     gap: 1em;
  }
  
-
+.past-posts > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+ 
 
 /* === Nav === */
 
