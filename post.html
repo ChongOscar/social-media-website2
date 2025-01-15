@@ -9,48 +9,16 @@
         <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Calistoga&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="post.css">
     </head>
-
-    <body>
-        <section id="logged-out-view">
-            <div class="container">
-                <h1 class="app-title">Social Media Website</h1>
-                
-                <div class="provider-buttons">
-                    <button id="sign-in-with-google-btn" class="provider-btn">
-                        <img src="assets/providers/google.png" class="google-btn-logo">
-                        Sign in with Google
-                    </button>
-                </div>
-                
-                <div class="auth-fields-and-buttons">
-                    <input id="email-input" type="email" placeholder="Email">
-                    <input id="password-input" type="password" placeholder="Password">
-                    
-                    <button id="sign-in-btn" class="primary-btn">Sign in</button>
-                    <button id="create-account-btn" class="secondary-btn">Create Account</button>
-                </div>
-            </div>
-        </section>
-        
-        <section id="logged-in-view">
+        <section id="posts-view">
             <div class="container">
                 <div class="app-container">
-                    <div class="top-bar-section">
-                        <input type="text" id="search-bar">
-                        <button id="sign-out-btn" class="icon-btn">
-                            <img src="assets/icons/logOut.png" class="icon-img-btn">
-                        </button>
+                    <div class="user-section">
                         <img id="user-profile-picture">
+                        <h2 id="user-greeting"></h2>
                     </div>
                     <div class="post-section">
-                        <div class="post">
-                            <div class="post-header">
-                                <img id="post-profile-picture">
-                                <p class="post-username" id="post-name"></p>
-                            </div>
-                            <hr/>
-
-                        </div>
+                        <textarea id="post-input" placeholder="Write down how you're feeling..."></textarea>
+                        <button id="post-btn" class="primary-btn">Post</button>
                     </div>
                     <div id="past-posts">
                         <h2>POSTS</h2>
@@ -58,6 +26,7 @@
                 </div>
             </div>
         </section>
+
         <script src="post.js" type="module"></script>
     </body>
 </html>

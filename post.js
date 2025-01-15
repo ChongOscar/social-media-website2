@@ -29,7 +29,7 @@ console.log(db)
 const userProfilePictureEl = document.getElementById("user-profile-picture")
 
 const viewLoggedOut = document.getElementById("logged-out-view")
-const viewLoggedIn = document.getElementById("logged-in-view")
+const viewLoggedIn = document.getElementById("posts-view")
 
 const signInWithGoogleButtonEl = document.getElementById("sign-in-with-google-btn")
 
@@ -49,28 +49,25 @@ const postButtonEl = document.getElementById("post-btn")
 const pastPosts = document.getElementById("past-posts")
 /* == UI - Event Listeners == */
 
-signInWithGoogleButtonEl.addEventListener("click", authSignInWithGoogle)
-
-signInButtonEl.addEventListener("click", authSignInWithEmail)
-createAccountButtonEl.addEventListener("click", authCreateAccountWithEmail)
-
-signOutButtonEl.addEventListener("click", authSignOut)
-
 /* === Main Code === */
-
 onAuthStateChanged(auth, (user) => {
+
     if (user) {
-      showLoggedInView()
       showProfilePicture(userProfilePictureEl, user)
-      showUserGreeting(userGreetingEl, user)  
+      showUserGreeting(userGreetingEl, user)
       showPosts(pastPosts, user)
-    } else {
-      showLoggedOutView()
-    }
-    });
 
+    } 
+  });
 
-
+/*
+const { user1 } = require('./index.js');
+console.log(user1)
+showLoggedInView()
+showProfilePicture(userProfilePictureEl, user1)
+showUserGreeting(userGreetingEl, user1)
+showPosts(pastPosts, user1)
+*/
 /* === Functions === */
 
 async function showPosts(pastPosts, user){
@@ -133,30 +130,6 @@ function authSignInWithEmail() {
 }
 
 
-function authCreateAccountWithEmail() {
-    console.log("Sign up with email and password")
-
-   const email = emailInputEl.value;
-   const password = passwordInputEl.value;
-   createUserWithEmailAndPassword(auth, email, password)
-   .then((userCredential) => {
-    showLoggedInView()
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode)
-    console.log(errorMessage)
-  });
-}
-
-function authSignOut() {
-    signOut(auth).then(() => {
-        showLoggedOutView();
-      }).catch((error) => {
-        console.log(error.message)
-      });
- }
  
  async function addPostToDB(postBody, user) {
 
@@ -184,27 +157,6 @@ function postButtonPressed() {
   }
 
 }
-
-function showLoggedOutView() {
-    hideView(viewLoggedIn)
-    showView(viewLoggedOut)
- }
- 
- 
- function showLoggedInView() {
-    hideView(viewLoggedOut)
-    showView(viewLoggedIn)
- }
- 
- 
- function showView(view) {
-    view.style.display = "flex"
- }
- 
- 
- function hideView(view) {
-    view.style.display = "none"
- }
  
 
 //credit: coursera
