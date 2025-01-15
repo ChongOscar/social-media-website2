@@ -43,7 +43,7 @@ const signOutButtonEl = document.getElementById("sign-out-btn")
 const userGreetingEl = document.getElementById("user-greeting")
 
 const textareaEl = document.getElementById("post-input")
-const postButtonEl = document.getElementById("post-btn")
+const postButtonEl = document.getElementById("post-button")
 /* == UI - Event Listeners == */
 
 signInWithGoogleButtonEl.addEventListener("click", authSignInWithGoogle)
@@ -52,6 +52,7 @@ signInButtonEl.addEventListener("click", authSignInWithEmail)
 createAccountButtonEl.addEventListener("click", authCreateAccountWithEmail)
 
 signOutButtonEl.addEventListener("click", authSignOut)
+postButtonEl.addEventListener("click", goToPostPage)
 
 /* === Main Code === */
 
@@ -60,6 +61,7 @@ onAuthStateChanged(auth, (user) => {
       showLoggedInView()
       showProfilePicture(userProfilePictureEl, user)
       showUserGreeting(userGreetingEl, user)
+      showPosts()
     } else {
       showLoggedOutView()
     }
@@ -83,16 +85,16 @@ function showProfilePicture(imgElement, user) {
 
     if (user !== null) {
         if (user.displayName != null) {
-            element.textContent = `Hi ${user.displayName}`;
+            element.textContent = `Welcome ${user.displayName}`;
         } else {
-            element.textContent = "Hi, how are you?";
+            element.textContent = "Welcome";
         }
     }
  }
 
- function clearInputField(inputField) {
-    inputField.value = ""
- }
+function goToPostPage() {
+  window.location.href = "post.html"
+}
  
 /* = Functions - Firebase - Authentication = */
 
@@ -142,31 +144,14 @@ function authSignOut() {
       });
  }
  
- async function addPostToDB(postBody, user) {
-
-  try {
-    const docRef = await addDoc(collection(db, "Posts"), {
-      body: postBody,
-      uid: user.uid,
-      createdAt: serverTimestamp()
-    });
-    console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
-}
-
 
 /* == Functions - UI Functions == */
-function postButtonPressed() {
-  const postBody = textareaEl.value
-  const user = auth.currentUser
-  
-  if (postBody) {
-      addPostToDB(postBody, user)
-      clearInputField(textareaEl)
-  }
 
+async function showPosts() {
+  const querySnapshot = await getDocs(collection(db, "Posts"));
+  querySnapshot.forEach((doc) => {
+    
+});
 }
 
 function showLoggedOutView() {
