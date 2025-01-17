@@ -9,7 +9,7 @@ import {
   serverTimestamp,
   query,
   where,
-  orderBy
+  orderBy,
 } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 import { getDocs } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 /* === Firebase Setup === */
@@ -36,11 +36,11 @@ const userGreetingEl = document.getElementById("user-greeting");
 
 const textareaEl = document.getElementById("post-input");
 const postButtonEl = document.getElementById("post-btn");
-const homeButtonEl = document.getElementById("home-button")
+const homeButtonEl = document.getElementById("home-button");
 
 /* == UI - Event Listeners == */
-postButtonEl.addEventListener("click", postButtonPressed)
-homeButtonEl.addEventListener("click", goToHomePage)
+postButtonEl.addEventListener("click", postButtonPressed);
+homeButtonEl.addEventListener("click", goToHomePage);
 /* === Main Code === */
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -61,16 +61,13 @@ async function showPosts(user) {
     orderBy("createdAt", "desc")
   );
   const querySnapshot = await getDocs(q);
-
+  document.querySelector(".post-section").innerHTML = "";
   querySnapshot.forEach((doc) => {
     console.log(doc.id, " => ", doc.data());
     const post = doc.data();
-    let postName =
-      post.uid.displayName == null ? "Anonymous" : post.uid.displayName;
+    let postName = post.displayName == null ? "Anonymous" : post.displayName;
     let postProfilePicture =
-      post.uid.photoURL == null
-        ? "assets/images/defaultPic.jpg"
-        : post.uid.photoURL;
+      post.photoURL == null ? "assets/images/defaultPic.jpg" : post.photoURL;
     let postTimestamp = post.createdAt.toDate();
     postTimestamp = formatDate(postTimestamp);
     const postElement = document.createElement("div");
@@ -133,9 +130,10 @@ async function addPostToDB(postBody, user) {
       body: postBody,
       uid: user.uid,
       createdAt: serverTimestamp(),
+      displayName: user.displayName,
+      photoURL: user.photoURL,
     });
-    document.querySelector(".post-section").innerHTML = "";
-    showPosts(user)
+    showPosts(user);
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);

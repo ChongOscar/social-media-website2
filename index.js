@@ -4,6 +4,8 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 import { signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+import { GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+import { signInWithPopup } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 import {
@@ -11,7 +13,6 @@ import {
   getDocs,
   query,
   orderBy,
-  where,
 } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 /* === Firebase Setup === */
 const firebaseConfig = {
@@ -28,6 +29,7 @@ const auth = getAuth(app);
 console.log(auth);
 const db = getFirestore(app);
 console.log(db);
+const provider = new GoogleAuthProvider();
 /* === UI === */
 
 /* == UI - Elements == */
@@ -65,7 +67,6 @@ postButtonEl.addEventListener("click", goToPostPage);
 
 searchBarEl.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    document.querySelector(".post-section").innerHTML = "";
     showPosts(searchBarEl.value);
   }
 });
@@ -121,6 +122,27 @@ function formatDate(date) {
 
 function authSignInWithGoogle() {
   console.log("Sign in with Google");
+
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
 }
 
 function authSignInWithEmail() {
@@ -171,12 +193,10 @@ function authSignOut() {
 async function showPosts(searchOption) {
   const q = query(collection(db, "Posts"), orderBy("createdAt", "desc"));
   const querySnapshot = await getDocs(q);
-
-  querySnapshot.forEach((doc) => {
-    console.log(doc.id, " => ", doc.data());
-    const post = doc.data();
-    let postName =
-      post.uid.displayName == null ? "Anonymous" : post.uid.displayName;
+  document.querySelector(".post-section").innerHTML = "";
+  querySnapshot.forEach((docs) => {
+    const post = docs.data();
+    let postName = post.displayName == null ? "Anonymous" : post.displayName;
     if (searchOption != null) {
       if (
         !post.body.toLowerCase().match(searchOption.toLowerCase()) &&
@@ -185,9 +205,7 @@ async function showPosts(searchOption) {
         return;
     }
     let postProfilePicture =
-      post.uid.photoURL == null
-        ? "assets/images/defaultPic.jpg"
-        : post.uid.photoURL;
+      post.photoURL == null ? "assets/images/defaultPic.jpg" : post.photoURL;
     let postTimestamp = post.createdAt.toDate();
     postTimestamp = formatDate(postTimestamp);
     const postElement = document.createElement("div");
