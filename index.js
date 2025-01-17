@@ -208,6 +208,8 @@ async function showPosts(searchOption) {
       post.photoURL == null ? "assets/images/defaultPic.jpg" : post.photoURL;
     let postTimestamp = post.createdAt.toDate();
     postTimestamp = formatDate(postTimestamp);
+    let statusImgSrc = post.statusImg;
+    
     const postElement = document.createElement("div");
     postElement.classList.add("post");
     postElement.innerHTML = `
@@ -215,6 +217,7 @@ async function showPosts(searchOption) {
             <img id="post-profile-picture" src="${postProfilePicture}">
             <p class="post-username" id="post-name">${postName}</p>
             <p class="post-timestamp">${postTimestamp}</p>
+            <img class="status-img" src="${statusImgSrc}"></img>
         </div>
         <hr/>
         <div class="post-body">

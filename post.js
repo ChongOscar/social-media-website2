@@ -37,11 +37,14 @@ const userGreetingEl = document.getElementById("user-greeting");
 const textareaEl = document.getElementById("post-input");
 const postButtonEl = document.getElementById("post-btn");
 const homeButtonEl = document.getElementById("home-button");
-
+const statusButtonEl = document.getElementById("status-button");
+const statusImg = document.getElementById("status")
 /* == UI - Event Listeners == */
 postButtonEl.addEventListener("click", postButtonPressed);
 homeButtonEl.addEventListener("click", goToHomePage);
+statusButtonEl.addEventListener("click", changeStatus)
 /* === Main Code === */
+let count = 1;
 onAuthStateChanged(auth, (user) => {
   if (user) {
     showProfilePicture(userProfilePictureEl, user);
@@ -64,12 +67,15 @@ async function showPosts(user) {
   document.querySelector(".post-section").innerHTML = "";
   querySnapshot.forEach((doc) => {
     console.log(doc.id, " => ", doc.data());
+
     const post = doc.data();
     let postName = post.displayName == null ? "Anonymous" : post.displayName;
     let postProfilePicture =
       post.photoURL == null ? "assets/images/defaultPic.jpg" : post.photoURL;
     let postTimestamp = post.createdAt.toDate();
     postTimestamp = formatDate(postTimestamp);
+    let statusImgSrc = post.statusImg;
+
     const postElement = document.createElement("div");
     postElement.classList.add("post");
     postElement.innerHTML = `
@@ -77,6 +83,7 @@ async function showPosts(user) {
             <img id="post-profile-picture" src="${postProfilePicture}">
             <p class="post-username" id="post-name">${postName}</p>
             <p class="post-timestamp">${postTimestamp}</p>
+            <img class="status-img" src="${statusImgSrc}"></img>
         </div>
         <hr/>
         <div class="post-body">
@@ -122,6 +129,20 @@ function formatDate(date) {
 function goToHomePage() {
   window.location.href = "index.html";
 }
+
+function changeStatus() {
+  count++;
+  if (count > 3) {
+    count = 1;
+  }
+  if (count === 1) {
+    statusImg.src = "assets/icons/smile.png"
+  } else if (count === 2) {
+    statusImg.src = "assets/icons/neutral.png"
+  } else if (count === 3) {
+    statusImg.src = "assets/icons/sad.png"
+  }
+}
 /* = Functions - Firebase - Authentication = */
 
 async function addPostToDB(postBody, user) {
@@ -132,6 +153,7 @@ async function addPostToDB(postBody, user) {
       createdAt: serverTimestamp(),
       displayName: user.displayName,
       photoURL: user.photoURL,
+      statusImg: statusImg.src
     });
     showPosts(user);
     console.log("Document written with ID: ", docRef.id);

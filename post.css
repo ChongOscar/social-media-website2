@@ -150,9 +150,10 @@ nav {
 }
 
 .user-section {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
+  flex-direction: row;
   align-items: center;
+  margin: auto;
   gap: 0.8em;
 }
 
@@ -344,6 +345,12 @@ button:hover {
 }
 .home-button:hover {
   background-color: #bebebe;
+}
+
+.status-button {
+  background: none;
+  width: fit-content;
+  height: fit-content;
 }
 /* 
 classes to make the sign out buttons work 
