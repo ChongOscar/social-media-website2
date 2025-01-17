@@ -1,325 +1,375 @@
 :root {
-    --primary-color: #FFDE00;
-    --primary-light-color: #FFE769;
-    --secondary-color: #FFE4BA;
-    --secondary-light-color: #FFF6E8;
-    --post-color: #62EEA8;
-    --delete-color: #FF9F9F;
-    --light-color: #FFFEFC;
-    --grey-color: #747E79;
-    --dark-color: #000000;
+  --primary-color: #ffde00;
+  --primary-light-color: #ffe769;
+  --secondary-color: #ffe4ba;
+  --secondary-light-color: #fff6e8;
+  --post-color: #62eea8;
+  --delete-color: #ff9f9f;
+  --light-color: #fffefc;
+  --grey-color: #747e79;
+  --dark-color: #000000;
 
-    --primary-font: 'Cabin', sans-serif;
-    --seconday-font: 'Calistoga', sans-serif;
-    
-    --border-width: 3px;
-    --element-border-radius: 5px;
-    
-    --button-height: 5px;
-    
-    --small-button-height: 2px;
-    
-    --element-padding: 0.8em;
-    
-    --maximum-width: 480px;
+  --primary-font: "Cabin", sans-serif;
+  --seconday-font: "Calistoga", sans-serif;
+
+  --border-width: 3px;
+  --element-border-radius: 5px;
+
+  --button-height: 5px;
+
+  --small-button-height: 2px;
+
+  --element-padding: 0.8em;
+
+  --maximum-width: 480px;
 }
 
-#past-posts > div:first-child{
-    font-size: xx-large;
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
+html,
+body {
+  margin: 2px;
+  padding: 0;
+  font-size: 16px;
 }
 
 body {
-    color: var(--dark-color);
-    background-color: var(--secondary-light-color);
-    font-family: var(--primary-font);
+  color: var(--dark-color);
+  background-color: var(--secondary-color);
+  font-family: var(--primary-font);
 }
 
 /* === Typography === */
 
-h1, h2 {
-    margin: 0;
+h1,
+h2 {
+  margin: 0;
 }
 
 h2 {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .app-title {
-    font-family: var(--seconday-font);
-    font-size: 2.5em;
-    text-align: center;
+  font-family: var(--seconday-font);
+  font-size: 2.5em;
+  text-align: center;
 }
 
 /* === Sections === */
+.post-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
 
 section {
-    margin: 3em 0;
+  margin: 3em 0;
 }
 
 .auth-fields-and-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 * /*=== Top Bar Section === */
 
 .top-bar-section {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: start;
-    justify-content: flex-end;
-    gap: 0.4em;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: flex-end;
+  gap: 0.4em;
 }
 
 #user-profile-picture {
-    width: 2.75em;
-    height: 2.75em;
-    border-radius: 100%;
-    border: var(--border-width) solid var(--dark-color);
+  width: 4em;
+  height: 4em;
+  border-radius: 100%;
+  border: var(--border-width) solid var(--dark-color);
 }
 
 .top-bar-section h2 {
-    font-size: 1.2em;
+  font-size: 1.2em;
 }
 /* === Post Section === */
 
+.create-post-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.post {
+  font-size: 1em;
+  border: 0;
+  box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  margin: 8px;
+  display: block;
+  border-radius: 5px;
+}
 
-.post-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
- }
- 
+.post img {
+  margin: 8px;
+  width: 2.25em;
+  height: 2.25em;
+  border-radius: 100%;
+  border: var(--border-width) solid var(--dark-color);
+  vertical-align: middle;
+}
 
+.post-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.post-username {
+  font-size: 20px;
+}
+
+.post-body {
+  padding-left: 8px;
+}
+
+.post-timestamp {
+  font-size: 12px;
+  color: var(--grey-color);
+  text-align: end;
+  margin-inline-start: auto;
+  margin-inline-end: 4px;
+}
 /* === Nav === */
 
 nav {
-    margin: 0.6em 0;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+  margin: 0.6em 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .user-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8em;
 }
 
 .user-section img {
-    width: 3.75em;
-    height: 3.75em;
-    border-radius: 100%;
-    border: var(--border-width) solid var(--dark-color);
+  width: 3.75em;
+  height: 3.75em;
+  border-radius: 100%;
+  border: var(--border-width) solid var(--dark-color);
 }
 
 .user-section h2 {
-    font-size: 1.2em;
+  font-size: 1.8em;
 }
 /* === Structure === */
 
 .container {
-    max-width: var(--maximum-width);
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  max-width: var(--maximum-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 #logged-out-view .container {
-    gap: 2em;
+  gap: 2em;
 }
 
-.post {
-    font-size: 1em;
-    border: 0;
-    box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, .25);
-    background-color: white;
-    margin: 8px;
-}
-
-.post img {
-    margin: 8px;
-    width: 2.5em;
-    height: 2.5em;
-    border-radius: 100%;
-    border: var(--border-width) solid var(--dark-color);
-}
 /* === Common for elements === */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid black;
+  padding: 0;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 0;
+}
 
+input,
+button,
+textarea {
+  font-family: inherit;
+  padding: var(--element-padding);
+  border-radius: var(--element-border-radius);
+  width: 100%;
+  box-sizing: border-box;
+}
 
-input, button, textarea {
-    font-family: inherit;
-    padding: var(--element-padding);
-    border-radius: var(--element-border-radius);
-    width: 100%;
-    box-sizing: border-box;
- }
- 
- 
- input, button {
-    font-size: 1.1em;
-    text-align: center;
-    border: var(--border-width) solid var(--dark-color);
- }
- 
- 
- input:focus, button:focus, textarea:focus {
-    outline: none;
- }
- 
+input,
+button {
+  font-size: 1.1em;
+  text-align: center;
+  border: var(--border-width) solid var(--dark-color);
+}
+
+input:focus,
+button:focus,
+textarea:focus {
+  outline: none;
+}
+
 /* this is for the user profile */
 .app-container {
-    display: flex;
-    flex-direction: column;
-    gap: 3em;
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
 }
 
 /* === Input fields === */
 
 input {
-    font-weight: 300;
+  font-weight: 300;
 }
 
-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: var(--grey-color);
-    opacity: 1; /* Firefox */
+input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--grey-color);
+  opacity: 1; /* Firefox */
 }
 
-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: var(--grey-color);
+input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--grey-color);
 }
 
-input::-ms-input-placeholder { /* Microsoft Edge */
-    color: var(--grey-color);
+input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--grey-color);
 }
 
 #search-bar {
-    padding: 6.5px;
-    text-align: start;
-    margin-top: 4px;
-    vertical-align:middle
+  padding: 6.5px;
+  text-align: start;
+  margin-top: 4px;
+  vertical-align: middle;
 }
 
 textarea {
-    font-size: 1em;
-    border: 0;
-    box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, .25);
-    resize: none;
-    height: 6em;
- }
- 
- 
- textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: var(--grey-color);
-    opacity: 1; /* Firefox */
- }
- 
- 
- textarea:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: var(--grey-color);
- }
- 
- 
- textarea::-ms-input-placeholder { /* Microsoft Edge */
-    color: var(--grey-color);
- }
+  font-size: 1em;
+  border: 0;
+  box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.25);
+  resize: none;
+  height: 6em;
+}
 
+textarea::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--grey-color);
+  opacity: 1; /* Firefox */
+}
+
+textarea:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--grey-color);
+}
+
+textarea::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--grey-color);
+}
 
 /* === Buttons === */
 
 button {
-    font-weight: 600;
-    width: 100%;
-    border:none;
+  font-weight: 600;
+  width: 100%;
+  border: none;
 }
 
 button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .primary-btn {
-    background-color: var(--primary-color);
-    box-shadow: 0px var(--button-height) 0px 0px var(--dark-color);
-    position: relative;
+  background-color: var(--primary-color);
+  box-shadow: 0px var(--button-height) 0px 0px var(--dark-color);
+  position: relative;
 }
 
 .primary-btn:hover {
-    top: var(--button-height);
-    box-shadow: none;
+  top: var(--button-height);
+  box-shadow: none;
 }
 
 .secondary-btn {
-    padding: 0.4em;
-    background-color: transparent;
+  padding: 0.4em;
+  background-color: transparent;
 }
 
 .secondary-btn:hover {
-    color: var(--light-color);
-    background-color: var(--dark-color);
+  color: var(--light-color);
+  background-color: var(--dark-color);
 }
 
 .provider-btn {
-    color: var(--dark-color);
-    background-color: var(--light-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5em;
-    border: 0;
-    box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, .25);
+  color: var(--dark-color);
+  background-color: var(--light-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  border: 0;
+  box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.25);
 }
 
 .provider-btn:hover {
-    transition: all 0.2s ease;
-    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, .25);
+  transition: all 0.2s ease;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
 }
 
 .google-btn-logo {
-    width: 1.375em;
+  width: 1.375em;
 }
 
 .icon-btn {
-    width: 2.75em;
-    height: 2.75em;
-    padding: 0;
+  width: 2.75em;
+  height: 2.75em;
+  padding: 0;
 }
 
+.home-button {
+  position: fixed;
+  bottom: 10px;
+  width: 120px;
+  align-self: center;
+  border: black;
+  border-style: solid;
+}
+.home-button:hover {
+  background-color: #bebebe;
+}
 /* 
 classes to make the sign out buttons work 
 */
 
 .icon-img-btn {
-    background: none;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-    width: 40px;
-    border: #000000;
-    border: var(--border-width) solid var(--dark-color);
-    border-radius: var(--element-border-radius);
-    box-sizing: border-box;
-    vertical-align:middle
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  width: 40px;
+  border: #000000;
+  border: var(--border-width) solid var(--dark-color);
+  border-radius: var(--element-border-radius);
+  box-sizing: border-box;
+  vertical-align: middle;
 }
 
 /* === IDs === */
 
 #logged-out-view {
-    display: none;
+  display: none;
 }
 
 #logged-in-view {
-    display: none;
+  display: none;
 }
 
 /*  credit:coursera */
-

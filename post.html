@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>Social Media Website</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Calistoga&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="post.css">
-    </head>
-        <section id="posts-view">
-            <div class="container">
-                <div class="app-container">
-                    <div class="user-section">
-                        <img id="user-profile-picture">
-                        <h2 id="user-greeting"></h2>
-                    </div>
-                    <div class="post-section">
-                        <textarea id="post-input" placeholder="Write down how you're feeling..."></textarea>
-                        <button id="post-btn" class="primary-btn">Post</button>
-                    </div>
-                    <div id="past-posts">
-                        <h2>POSTS</h2>
-                    </div>
-                </div>
+<head>
+    <title>Social Media Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Calistoga&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="post.css">
+</head>
+<section id="posts-view">
+    <div class="container">
+        <div class="app-container">
+            <div class="user-section">
+                <img id="user-profile-picture">
+                <h2 id="user-greeting"></h2>
             </div>
-        </section>
+            <div class="create-post-section">
+                <textarea id="post-input" placeholder="Write down how you're feeling..."></textarea>
+                <button id="post-btn" class="primary-btn">Post</button>
+            </div>
+            <div class="post-section">
+                <h2>Your Posts</h2>
+            </div>
+            <button class="home-button" id="home-button">Home</button>
+        </div>
+    </div>
+</section>
 
-        <script src="post.js" type="module"></script>
-    </body>
+<script src="post.js" type="module"></script>
+</body>
+
 </html>
 
-    <!--   credit: coursera-->
+<!--   credit: coursera-->
