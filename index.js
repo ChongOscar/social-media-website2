@@ -55,6 +55,8 @@ const userGreetingEl = document.getElementById("user-greeting");
 const postButtonEl = document.getElementById("post-button");
 
 const searchBarEl = document.getElementById("search-bar");
+
+const errorEl = document.getElementById("error-message")
 /* == UI - Event Listeners == */
 
 signInWithGoogleButtonEl.addEventListener("click", authSignInWithGoogle);
@@ -68,6 +70,11 @@ postButtonEl.addEventListener("click", goToPostPage);
 searchBarEl.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     showPosts(searchBarEl.value);
+  }
+});
+passwordInputEl.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    authSignInWithEmail()
   }
 });
 
@@ -158,6 +165,11 @@ function authSignInWithEmail() {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorMessage);
+
+      errorEl.innerHTML = "Invalid Login"
+      setTimeout(function() {
+        errorEl.innerHTML = ""
+      }, 2000)
     });
 }
 

@@ -52,6 +52,7 @@ h2 {
   font-family: var(--seconday-font);
   font-size: 2.5em;
   text-align: center;
+  margin-bottom: 30%;
 }
 
 /* === Sections === */
@@ -91,6 +92,12 @@ section {
 
 .top-bar-section h2 {
   font-size: 1.2em;
+}
+
+.sign-in-row {
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
 }
 /* === Post Section === */
 
@@ -200,6 +207,8 @@ textarea:focus {
 
 input {
   font-weight: 300;
+  width: 80%;
+  margin: auto;
 }
 
 input::placeholder {
@@ -238,9 +247,11 @@ button:hover {
 }
 
 .primary-btn {
-  background-color: var(--primary-color);
+  background-color: #bad5ff;
   box-shadow: 0px var(--button-height) 0px 0px var(--dark-color);
   position: relative;
+  width: auto;
+  margin: auto;
 }
 
 .primary-btn:hover {
@@ -249,13 +260,16 @@ button:hover {
 }
 
 .secondary-btn {
-  padding: 0.4em;
-  background-color: transparent;
+  background-color: #bad5ff;
+  box-shadow: 0px var(--button-height) 0px 0px var(--dark-color);
+  position: relative;
+  width: auto;
+  margin: auto;
 }
 
 .secondary-btn:hover {
-  color: var(--light-color);
-  background-color: var(--dark-color);
+  top: var(--button-height);
+  box-shadow: none;
 }
 
 .provider-btn {
@@ -267,6 +281,9 @@ button:hover {
   gap: 0.5em;
   border: 0;
   box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.25);
+  width: auto;
+  margin-top: 5%;
+  margin: auto;
 }
 
 .provider-btn:hover {
@@ -323,4 +340,8 @@ classes to make the sign out buttons work
   display: none;
 }
 
+#error-message {
+  text-align: center;
+  color: red;
+}
 /*  credit:coursera */
